@@ -17,7 +17,7 @@
     group: www-data
     mode: '0644'
 
-- name: "Copiar fichero de configuracion y reiniciar el servicio"
+- name: "Copiar fichero de configuracion"
   copy:
     src: etc/apache2/ports.conf
     dest: /etc/apache2/ports.conf
@@ -25,7 +25,7 @@
     group: root
     mode: '0644'
 
-- name: "Cambiar el puerto por defecto, por el puerto 81"
+- name: "Cambiar el puerto por defecto, por el puerto 81 y reiniciar el servicio"
   lineinfile: dest=/etc/apache2/ports.conf regexp="^Listen 80 8081" line="Listen 81 8081" state=present
   notify:
     - restart apache2
